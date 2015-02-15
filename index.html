@@ -33,11 +33,11 @@
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
   <style>
-  .reveal ol {
-  	margin: 0;
-  }
   .splash section img {
     border: none;
+  }
+  blockquote {
+  	color: blanchedalmond;
   }
   </style>
 </head>
@@ -89,13 +89,33 @@
           <p>
 						<small>Created by <a href="https://thinkful-students.slack.com/messages/@tomht/">Thomas `tomatao` Hudspith-Tatham</a> / <a href="mailto:tomht@thinkful.com">tomht@thinkful.com</a></small>
 					</p>
+					<aside class="notes">
+						<p>
+							<small>Hello, super fired up about this!</small>
+						</p>
+						<p>
+							<small>My name's Tom I don't have a twitter or anything - catch me on slack though = link to me on Thinkful Students and my Thinkful Email address.</small>
+						</p>
+						<p>
+							<small>Senior Backbone dev for some time - then mentoring Angular 10 months and the Ang curriculum lead</small>
+						</p>
+						<p>
+							<small>Recently worked as an Angular consultant - doing big refactors on apps gone bad</small>
+						</p>
+						<p>
+							<small>Also Work with react and experiment with frameworks a lot!</small>
+						</p>
+						<p>
+							<small>Goal for this: Have a good understanding of solid architecture for Ang apps that will be long lasting.</small>
+						</p>
+					</aside>
 
         </section>
 
         <section>
           <h3>What are we going to talk about?</h3>
-          <ol>
-            <li class="fragment roll-in">The Problems with Angular</li>
+          <ol style="color:burlywood">
+            <li class="fragment roll-in">Problems with Angular</li>
             <li class="fragment roll-in">High Level Architecture</li>
             <li class="fragment roll-in">Modularity and Routing</li>
             <li class="fragment roll-in">Final Tips</li>
@@ -109,9 +129,11 @@
       	<section>
       		<h3>Common Problems With Angular</h3>
       		<img src="/img/01-angular-too-complex.jpg" alt="Too complex">
-    <aside class="notes">
-        boromir
-    </aside>
+			    <aside class="notes">
+			    	<ul>
+			        <li>boromir makes a valid point</li>
+			    	</ul>
+			    </aside>
       	</section>
       	<section>
       		<h4>$scope trees...</h4>
@@ -130,7 +152,7 @@
       	</section>
       	<section>
       		<h3>JavaScript :D</h3>
-      		<pre><code data-trim contenteditable>
+      		<pre><code data-trim contenteditable class="javascript">
 var i = 1;
 // some code
 i = i + ""; // oops!
@@ -141,26 +163,57 @@ i - 1;  // evaluates to the Number 0
 NaN == NaN; // evaluates to false
 // etc... with sprinkles of media devices and browsers
 					</code></pre>
+					<aside class="notes">
+						<ul>
+							<li>with</li>
+							<li>eval</li>
+							<li>void</li>
+							<li>type coersion</li>
+							<li>random concepts</li>
+							<li>lots of SO issues and blogs</li>
+							<li>this, dynamic contexts, prototypes, verbosity</li>
+						</ul>
+					</aside>
       	</section>
       	<section>
       		<img src="/img/01-js-difficult.jpg">
       	</section>
       	<section>
-      		<h3>Conclusion:</h3>
-      		<h2>Angular JS is Complicated</h2>
+      		<h3 style="color:cornflowerblue">Conclusion?</h3>
+      		<h2 class="fragment roll-in">Angular JS is Complicated</h2>
       	</section>
       	<section>
       		<h2>Slow Performance</h2>
-      		<h3>Multiple watches, digests and assets...</h3>
+      		<h3 style="color:burlywood">Multiple watches, digests and assets...</h3>
       		<img src="/img/01.2-slow-performance.jpg" >
+					<aside class="notes">
+						<p>Consulted places - 70 digests on initialise</p>
+						<p>Duplicated states, horrible compile tricks, 70 digest stutters from async data</p>
+						<p>After 4 months - new features already always introduce new bugs</p>
+						<p>Number of watches is unmanageable and even bewildering</p>
+					</aside>
       	</section>
       	<section>
       		<h3>Where to put code?</h3>
       		<img src="/img/01.3-where-to-put.jpg">
+      		<aside class="notes">
+      			<p>Factory - service?</p>
+      			<p>Directive, controller</p>
+      			<p>1 or 2?</p>
+      			<p>New module?</p>
+      			<p>Tests? - no chance... (many say not possible)</p>
+      		</aside>
       	</section>
       	<section>
       		<h3>SPAs - New Ecosystem</h3>
       		<img src="/img/01.3-fuchsia-passed.jpeg">
+      		<aside class="notes">
+      			<p>Ember - routes and magic</p>
+      			<p>Angular - bindings, optional components</p>
+      			<p>Web components, 2 way bindings</p>
+      			<p>Backbone - traditional classes with ViewModels</p>
+      			<p>React - just views and strict data flow</p>
+      		</aside>
       	</section>
       	<section>
       		<h3>Icing on the cake?</h3>
@@ -172,6 +225,12 @@ NaN == NaN; // evaluates to false
       		Recently released: <a href="https://github.com/vojtajina/ng-todo">Angular v2 TodoMVC</a> it's in alpha
       		</p>
       		<p class="fragment"><small><em>(Not to mention ES6)</em></small></p>
+      		<aside class="notes">
+			    	<ul>
+			        <li>Sean Bean really knows the problems</li>
+			        <li>Alpha was published on Feb 11, 2015</li>
+			    	</ul>
+      		</aside>
       	</section>
       </section>
 
@@ -193,14 +252,14 @@ NaN == NaN; // evaluates to false
       			- <cite><em>Edsger W. Dijkstra, some book?</em></cite>
       		</blockquote>
       		<ul>
+      			<li class="fragment">Small files</li>
       			<li class="fragment">Clear and minimal dependencies</li>
       			<li class="fragment">Clear and minimal boundaries</li>
       			<li class="fragment">Clear data flow</li>
-      			<li class="fragment">Small files</li>
       		</ul>
       	</section>
       	<section>
-      		<h3>JavaScript can be your friend</h3>
+      		<h3 style="color:cornflowerblue">JavaScript can be your friend</h3>
       		<ul>
       			<li class="fragment">Pass by Sharing</li>
       			<li class="fragment">Higher order Functions</li>
@@ -213,8 +272,8 @@ NaN == NaN; // evaluates to false
       	</section>
       	<section>
       		<h3>Setting Some Goals</h3>
-      		<p class="fragment">Same old ideas&hellip;</p>
-      		<ul>
+      		<p class="fragment" style="color:chocolate">Same old ideas&hellip;</p>
+      		<ul  style="color:burlywood">
       			<li class="fragment">Be explicit</li>
       			<li class="fragment">Manage initial state</li>
       			<li class="fragment">Use Layers for dependencies and boundaries</li>
@@ -223,18 +282,250 @@ NaN == NaN; // evaluates to false
       			<li class="fragment">SOLID DRY YAGNI SOCs</li>
       		</ul>
       		<p class="fragment">A bit too general?&hellip;</p>
+      		<aside class="notes">
+	      		<p>Layers help with knowing the impact of code additions and changes</p>
+	      		<p>Finding the route of problems and giving ourselves a map to put code in</p>
+      			<p>Modularity is hard and ends up often not being reused</p>
+      			<p>Maybe a bigger benefit is dependency management??</p>
+      		</aside>
       	</section>
       	<section>
       		<h3>Higher Level Goals</h3>
-      		<p class="fragment">Why?</p>
+      		<p class="fragment" style="color:burlywood">Why?</p>
       	</section>
       	<section>
       		<img src="/img/03-legacy-code.jpg">
+      		<aside class="notes">
+      			<p>Working on code 6 months later</p>
+      			<p>Almost a battle - need to break things to see how it works</p>
+      			<p>Mysterious jungle of spiders and snakes</p>
+      			<p>Want to on-board juniors easily</p>
+      		</aside>
       	</section>
       	<section>
       		<img src="/img/03-refactoring.gif">
+      		<pre><code data-trim class="javascript">
+// magic, do not touch.
+					</code></pre>
+      		<aside class="notes">
+      			<p>You spend a while planning a change - setting it up - still breaks!</p>
+      			<p>Undo you refactor - waste hours</p>
+      		</aside>
+      	</section>
+      	<section data-state="high-level-goals">
+      		<h3 style="color:burlywood">The Goals</h3>
+      		<table>
+      			<thead>
+      				<tr>
+      					<th style="color:goldenrod">Scope</th>
+      					<th style="color:cornsilk">Goal</th>
+      				</tr>
+      			</thead>
+      			<tbody>
+      				<tr>
+      					<td style="color:gold">Individual Files</td>
+      					<td>Simple</td>
+      				</tr>
+      				<tr>
+      					<td style="color:gold">Whole Code Base</td>
+      					<td>Manageable</td>
+      				</tr>
+      				<tr>
+      					<td style="color:gold">The Application</td>
+      					<td>Resilient</td>
+      				</tr>
+      				<tr>
+      					<td style="color:gold">Integration</td>
+      					<td>Configurable</td>
+      				</tr>
+      				<tr>
+      					<td style="color:gold">Features</td>
+      					<td>Modular</td>
+      				</tr>
+      			</tbody>
+      		</table>
+      		<p class="fragment roll-in" style="color:chocolate">By products of these:</p>
+      		<ul>
+      			<li class="fragment">Testability</li>
+      			<li class="fragment">Scalability</li>
+      			<li class="fragment">Observable</li>
+      		</ul>
+      		<aside class="notes">
+      			<p>Manageable - reasoning, predictable, debugging</p>
+      			<p>If it breaks - don't obstruct users</p>
+      			<p>Tweak API endpoints, file locations, urls, change for environments, monkey patch some states?</p>
+      			<p>Interchangeable, self contained units, extensible, arrangeable, portable?</p>
+      			<p>Scalable for number of instances, users and developers</p>
+      			<p>Can patch in event based behaviours - monitor performance, analytical data</p>
+      		</aside>
       	</section>
       </section>
+    	<section>
+    		<section>
+    			<h3>High Level Architecture</h3>
+      		<blockquote class="fragment">
+      			&ldquo; Without requirements or design, programming is the art of
+adding bugs to an empty text file. &rdquo;<br>
+      			- <cite><em>Louis Srygley - Application Architect UPS</em></cite>
+      		</blockquote>
+      		<aside class="notes">
+      			<p>Relevant because architecture can make requirements more clear.</p>
+      			<p>Represent business with code instead of soon to be outdated docs.</p>
+      		</aside>
+    		</section>
+    		<section>
+					<img src="/img/04-layers.jpg">
+    		</section>
+    		<section>
+    			<h3>Benefits of Happy Layers</h3>
+    			<ul style="color:burlywood">
+    				<li class="fragment roll-in">Smaller Files</li>
+    				<li class="fragment roll-in">Clear Dependency Structure</li>
+    				<li class="fragment roll-in">Clear Hierarchy</li>
+    				<li class="fragment roll-in">Easier to change</li>
+    				<li class="fragment roll-in">Easier to designate and allot code</li>
+    				<li class="fragment roll-in">More DRY</li>
+    				<li class="fragment roll-in">Easier to debug</li>
+    			</ul>
+    		</section>
+    		<section>
+    			<h3>Bad Architecture</h3>
+    		</section>
+    		<section>
+    			<h4 style="color:cornflowerblue">Fat Controller</h4>
+    			<ol>
+    				<li class="fragment roll-in">bunch of http requests</li>
+    				<li class="fragment roll-in">redirects</li>
+    				<li class="fragment roll-in">reads localStorage</li>
+    				<li class="fragment roll-in">bunch of function definitions with core logic</li>
+    				<li class="fragment roll-in">headaches</li>
+    			</ol>
+    			<p class="fragment roll-in" style="color:pink">Works for a while - then you realise it's too big to change and doesn't work</p>
+    			<p class="fragment roll-in" style="color:burlywood">Prevention is better than solution!</p>
+    		</section>
+    		<section>
+    			<h3>Examples in the Wild:</h3>
+    			<ul>
+						<li>
+							<a href="https://github.com/mjibson/goread/blob/master/app/static/js/site.js">goread</a> - 1134 lines
+						</li>
+						<li>
+							<a href="https://github.com/coinkite/coinkite-bitcoin-atm/blob/master/project.js">coinkite</a> - 451 lines
+						</li>
+						<li>
+							<a href="https://github.com/pikock/bootstrap-magic/blob/master/app/js/controllers.js">bootstrap-magic</a> - 161 lines
+						</li>
+						<li>
+							<a href="https://github.com/shidhincr/LookAround/blob/master/app/js/controllers.js">LookAround</a> - 263 lines
+						</li>
+						<li>
+							<a href="https://github.com/ivan-dyachenko/bamboo-status/blob/master/js/bamboo-status.js">bamboo-status</a> - 407 lines
+						</li>
+    			</ul>
+    			<p class="fragment" style="color:pink">
+    				What happens on boot?
+    			</p>
+    			<p class="fragment" style="color:rgb(242, 137, 155)">
+    				Difficult to test
+    			</p>
+    			<p class="fragment" style="color:rgb(215, 86, 109)">
+    				Debugging just to understand logic!
+    			</p>
+    			<p class="fragment" style="color:rgb(234, 54, 54)">
+    				Sharing state between controllers?<br><span class="fragment" style="color:red">Need to duplicate state!</span>
+    			</p>
+    			<aside class="notes">
+    				<p>Blog list controller creates representation of a blog post and stores on scope</p>
+    				<p>How can the sidebar get it? Sidebar inside the list controller? Eww! Dependency!</p>
+    			</aside>
+    		</section>
+    		<section>
+      		<img src="/img/04.2-architecture.jpg" alt="Go home architect">
+    		</section>
+    		<section>
+    			<h4>So Tom... Which Layer's do you suggest?</h4>
+    			<ol style="color:burlywood">
+    				<li class="fragment">Configuration</li>
+    				<li class="fragment">Core Module</li>
+    				<li class="fragment">Feature Modules</li>
+    				<li class="fragment">Routes</li>
+    				<li class="fragment">Integration</li>
+    			</ol>
+    			<p class="fragment">Focus on the requirements</p>
+    			<p class="fragment" style="color:cornflowerblue">Actions, aka: Interactions, Controls, Service Layer</p>
+<!--       		<blockquote class="fragment">
+      			&ldquo; Walking on water and developing software from a specification are easy if both are frozen. &rdquo;<br>
+      			- <cite><em>Edward Berard, The Object Agency, Inc</em></cite>
+      		</blockquote>
+    			<p class="fragment">Actions inside Modules</p> -->
+    		</section>
+    		<section>
+      		<img src="/img/high-level-architecture.png" alt="Go home architect">
+    		</section>
+    	</section>
+
+    	<section data-background="rgb(5, 52, 90)" data-background-transition="zoom">
+    		<section>
+	    		<h3>Modularity and Routing</h3>
+    		</section>
+    		<section>
+    			<h3>Routes Layer</h3>
+    			<blockquote class="fragment" style="color:pink">
+      			&ldquo; Routing for JavaScript Applications is like a party at the bottom. &rdquo;<br>
+      			- <cite><em>Thomas `tomatao` Hudspith-Tatham, Just Now</em></cite>
+      		</blockquote>
+      		<small class="fragment">Eh?</small>
+    		</section>
+    		<section>
+    			<img src="/img/05-party-at-the-bottom.jpg">
+    		</section>
+    		<section>
+    			<h3>What does that even Mean?</h3>
+    			<ul style="color:burlywood">
+    				<li class="fragment">Routes depend on everything else.</li>
+    				<li class="fragment">Don't depend on routes.</li>
+    				<li class="fragment">They have their own modularity too.</li>
+    				<li class="fragment">Initialisation logic, authorisation checks, redirects and little helpers.</li>
+    				<li class="fragment">Compose the other pieces for fun!</li>
+    				<li class="fragment">Can try out new ideas, designs, UX and have a party!</li>
+    				<li class="fragment">♪ヽ( ⌒o⌒)人(⌒-⌒ )v ♪ </li>
+    			</ul>
+    		</section>
+    		<section>
+    			<img src="/img/05-composition.jpg">
+    			<p class="fragment">Cool benefit from being simple and modular</p>
+    			<p class="fragment" style="color:pink">Show me an example!</p>
+    		</section>
+    		<section>
+    			<h3>View Controller for <span style="color:burlywood">Add Course</span></h3>
+    			<pre><code class="javascript" data-trim contenteditable>
+angular.module('routes')
+  .constant('addCourseView', {
+    controller: 'addCourseCtrl',
+    controllerAs: 'aC',
+  })
+  .controller('addCourseCtrl', function(Course, addCourse, closeModal) {
+    var vm = this;
+    vm.course = Course.get();
+    vm.addModalId = 'create-course-modal';
+    vm.modalAction = function modalAction() {
+      return addCourse()
+        .then(function() {
+          closeModal(vm.addModalId);
+        });
+    };
+  });
+    			</code></pre>
+    			<p class="fragment" style="color:cornflowerblue">Put each of these in a folder that reflects the route url/name?</p>
+    			<p class="fragment" style="color:pink"><small>Decouple routes from URLs?</small></p>
+    			<aside class="notes">
+    				<p>Constant available in config stage when route setup</p>
+    				<p>Can add resolve blocks for authentication, getting data while loading.</p>
+    				<p>Small controller... most complex thing is wiring up a modal.</p>
+    				<p>Note the Course dependency... good for edit and listing collections...</p>
+    			</aside>
+    		</section>
+    	</section>
 
 
 
