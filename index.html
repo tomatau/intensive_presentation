@@ -39,6 +39,12 @@
   blockquote {
   	color: blanchedalmond;
   }
+  .reveal pre code {
+		max-height: 600px;
+  }
+  acronym {
+  	color: blanchedalmond;
+  }
   </style>
 </head>
 
@@ -242,7 +248,7 @@ NaN == NaN; // evaluates to false
       		<p class="fragment roll-in"><em style="color:rgb(111, 199, 111)">Yes... they do</em></p>
       	</section>
       	<section>
-      		<h3>Too Complex?</h3>
+      		<h3 style="color: rgb(229, 76, 76)">Too Complex?</h3>
       		<blockquote class="fragment">
       			&ldquo; Programming is the art of doing one thing at a time. &rdquo;<br>
       			- <cite><em>Michael C. Feathers, Working Effectively with Legacy Code</em></cite>
@@ -259,27 +265,27 @@ NaN == NaN; // evaluates to false
       		</ul>
       	</section>
       	<section>
-      		<h3 style="color:cornflowerblue">JavaScript can be your friend</h3>
+      		<h3 style="color:gold">JavaScript can be your friend</h3>
       		<ul>
       			<li class="fragment">Pass by Sharing</li>
       			<li class="fragment">Higher order Functions</li>
       			<li class="fragment">Tooling</li>
       		</ul>
-      		<p class="fragment roll-in" style="color:red">hold on a minute... JavaScript was a problem!?</p>
+      		<p class="fragment roll-in" style="color:rgb(229, 76, 76)">hold on a minute... JavaScript was a problem!?</p>
       	</section>
       	<section>
 					<img src="/img/02-js-has-rules.jpg">
       	</section>
       	<section>
       		<h3>Setting Some Goals</h3>
-      		<p class="fragment" style="color:chocolate">Same old ideas&hellip;</p>
-      		<ul  style="color:burlywood">
+      		<p class="fragment" style="color:cornflowerblue">Same old ideas&hellip;</p>
+      		<ul  style="color:gold">
       			<li class="fragment">Be explicit</li>
       			<li class="fragment">Manage initial state</li>
       			<li class="fragment">Use Layers for dependencies and boundaries</li>
       			<li class="fragment">Attempt modularity</li>
       			<li class="fragment">Composition over inheritance</li>
-      			<li class="fragment">SOLID DRY YAGNI SOCs</li>
+      			<li class="fragment"><acronym title="SRP OCP LSP ISP DIP">SOLID</acronym> <acronym title="Don't repeat yourself">DRY</acronym> <acronym title="Ya ain't gonna need it">YAGNI</acronym> <acronym title="Separation of Concerns">SOC</acronym>s</li>
       		</ul>
       		<p class="fragment">A bit too general?&hellip;</p>
       		<aside class="notes">
@@ -347,7 +353,7 @@ NaN == NaN; // evaluates to false
       		<p class="fragment roll-in" style="color:chocolate">By products of these:</p>
       		<ul>
       			<li class="fragment">Testability</li>
-      			<li class="fragment">Scalability</li>
+      			<li class="fragment">Scalability <small style="color: rgb(229, 76, 76)" class="fragment">Neat we just solved performance too :D</small></li>
       			<li class="fragment">Observable</li>
       		</ul>
       		<aside class="notes">
@@ -359,10 +365,25 @@ NaN == NaN; // evaluates to false
       			<p>Can patch in event based behaviours - monitor performance, analytical data</p>
       		</aside>
       	</section>
+      	<section>
+      		<h3 style="color: rgb(229, 76, 76)">Angular 2 is Coming?</h3>
+      		<p class="fragment roll-in">The ideas being preached are common!</p>
+      		<ul>
+      			<li class="fragment" style="color:gold">More code into components.</li>
+      			<li class="fragment" style="color:gold">Reduce use of scope, smaller controllers!</li>
+      			<li class="fragment" style="color:gold">Clear Hierarchies.</li>
+      			<li class="fragment" style="color:gold">More sophisticated routing strategies. </li>
+      		</ul>
+      	</section>
+      	<section>
+      		<h3 style="color: rgb(229, 76, 76)">SPAs are a new ecosystem?</h3>
+      		<p class="fragment">It doesn't matter ¯\_(ツ)_/¯</p>
+      		<p style="color: burlywood" class="fragment">Use a Modular, layered architecture &amp; try new things!</p>
+      	</section>
       </section>
     	<section>
     		<section>
-    			<h3>High Level Architecture</h3>
+    			<h2>High Level Architecture</h2>
       		<blockquote class="fragment">
       			&ldquo; Without requirements or design, programming is the art of
 adding bugs to an empty text file. &rdquo;<br>
@@ -432,7 +453,7 @@ adding bugs to an empty text file. &rdquo;<br>
     				Debugging just to understand logic!
     			</p>
     			<p class="fragment" style="color:rgb(234, 54, 54)">
-    				Sharing state between controllers?<br><span class="fragment" style="color:red">Need to duplicate state!</span>
+    				Sharing state between controllers?<br><span class="fragment" style="color:crimson">Need to duplicate state!</span>
     			</p>
     			<aside class="notes">
     				<p>Blog list controller creates representation of a blog post and stores on scope</p>
@@ -466,7 +487,7 @@ adding bugs to an empty text file. &rdquo;<br>
 
     	<section data-background="rgb(5, 52, 90)" data-background-transition="zoom">
     		<section>
-	    		<h3>Modularity and Routing</h3>
+	    		<h2>Modularity and Routing</h2>
     		</section>
     		<section>
     			<h3>Routes Layer</h3>
@@ -525,6 +546,329 @@ angular.module('routes')
     				<p>Note the Course dependency... good for edit and listing collections...</p>
     			</aside>
     		</section>
+    		<section>
+    			<h3>The Configuration For It <span style="color:cornflowerblue">- uiRouter</span></h3>
+    			<pre><code class="javascript" data-trim contenteditable>
+angular.config(function(){
+  $stateProvider
+    .state('manageLayout', {
+      abstract: true,
+      templateUrl: ROUTESURL + 'manage/manage.tmpl.html',
+      controllerAs: 'manage',
+      controller: 'manageCtrl',
+      resolve: {
+        weekResolve: 'appResolve'
+      }
+    })
+    .state('courses', {
+      url: URLMAP.courses,
+      parent: 'manageLayout',
+      views: {
+        addCourse: angular.extend(addCourseView, {
+          templateUrl: ROUTESURL + 'manage/add-course.tmpl.html',
+        }),
+        anotherView: ...
+      }
+    })
+});
+    			</code></pre>
+    			<p class="fragment roll-in" style="color:cornflowerblue">Just one URL per File with multiple smaller controllers</p>
+    			<p class="fragment roll-in" style="color:pink">One route per file! <span class="fragment roll-in">(long lived app with moving parts!)</span></p>
+    			<p class="fragment roll-in" style="color:burlywood">Resolve blocks (explicit dependencies with perks) for named routes!</p>
+    			<p class="fragment roll-in" style="color:gold">Small files!</p>
+    			<aside class="notes">
+    				<p>Using the addCourseView defined on previous slide</p>
+    				<p>Constants to configure path of parent folder</p>
+    				<p>heirarchical resolve blocks (explicit dependencies with perks) - note `appResolve`</p>
+    			</aside>
+    		</section>
+    		<section>
+    			<img src="/img/route-architecture.png">
+    			<p style="color:burlywood" class="fragment">Seriously one file per route</p>
+    			<p style="color:pink" class="fragment">Make a routes configuration file for - &nbsp;<code>names :  paths</code></p>
+    			<aside class="notes">
+						<p>Many students prefer one configuration block for all routes, then adding resolve blocks becomes far less appealing as the file is so big and the massive benefit is lost.</p>
+    			</aside>
+    		</section>
+    	</section>
+    	<section>
+	  		<section>
+	  			<h3>Modules Layer</h3>
+	  			<p class="fragment" style="color:pink">
+	    			Self contained features
+	    		</p>
+	  		</section>
+	  		<section>
+	  			<img src="/img/06-one-job.jpg">
+	  		</section>
+	  		<section>
+	  			<h3>Action Centred Structure</h3>
+	  			<p class="fragment roll-in" style="color:burlywood">Nice to have semantic business logic that delegates</p>
+	  			<p class="fragment roll-in" style="color:pink">So use layers inside modules too!</p>
+	  			<ol>
+	  				<li class="fragment">State Layer</li>
+	  				<li class="fragment">Boundaries</li>
+	  				<li class="fragment">Helpers</li>
+	  				<li class="fragment">Actions</li>
+	  				<li class="fragment">Components</li>
+	  				<li class="fragment">Forms</li>
+	  			</ol>
+      		<blockquote class="fragment">
+      			&ldquo; The goal for our software architecture is to provide the key mechanisms that are required to implement a wide variety of cross-layer adaptations described by our taxonomy. &rdquo;<br>
+      			- <cite><em>Soon Hyeok Choi (2008), A Software Architecture for Cross-layer Wireless Networks</em></cite>
+      		</blockquote>
+
+	  			<aside class="notes">
+	  				<p>Factory or service? - doesn't matter</p>
+	  				<p>All singletons - factories are flexible so I use them all the time</p>
+	  				<p>Services for quick and dirty, need to use an IIFE for modifying prototype</p>
+	  			</aside>
+	  		</section>
+	  		<section>
+	  			<img src="/img/06-dont-cross-the-streams.jpg">
+	  			<p class="fragment" style="color:rgb(229, 76, 76)">But what about global States and actions? User store, notifications services, Session storage!?</p>
+	  			<p class="fragment" style="color:burlywood">&hellip;special module!</p>
+	  		</section>
+	  		<section>
+	  			<img src="/img/07-special-module.jpg">
+	  			<p class="fragment" style="color:pink">Same as others - but shared!</p>
+	  		</section>
+	  		<section>
+	  			<img src="/img/07.2-crosses-streams.jpg">
+	  			<p class="fragment" style="color:burlywood">Other modules can depend on it</p>
+	  			<p class="fragment">If the others are using it, does that mean it is it's own layer?...<span class="fragment roll-in" style="color:rgb(4, 108, 4)">Yes!</span></p>
+	  		</section>
+	  		<section>
+	  			<h3>What's in a Core Module?</h3>
+	  			<ul style="color:burlywood">
+	  				<li class="fragment">Application Wide State
+	  					<ul>
+	  						<li class="fragment">User State</li>
+	  						<li class="fragment">Session State</li>
+	  						<li class="fragment">Base Model / Collection (state)</li>
+	  					</ul>
+	  				</li>
+	  				<li class="fragment">Same layers as any other module</li>
+	  				<li class="fragment">Try to keep it small</li>
+	  			</ul>
+      		<blockquote class="fragment">
+      			&ldquo; You could probably write an entire <a href="http://www.amazon.com/The-Fourth-Revolution-Global-Reinvent/dp/1594205396">book</a> on why global state is bad. &rdquo;<br>
+      			- <cite><em>Stack overflow - Top answer to some question</em></cite>
+      		</blockquote>
+	  		</section>
+	  		<section>
+	  			<h4>Core Logic, but application is fragile to it's changes</h4>
+	  			<img src="/img/07.1-top-of-the-chain.jpg">
+	  		</section>
+	  		<section>
+	  			<h3>Base Model Example</h3>
+	  			<pre><code data-trim contenteditable class="javascript">
+.factory('Model', function(){
+    function Model(){
+        this.data = {};
+    }
+
+    Model.prototype.set = function(modelData, value){
+        if (typeof modelData == "string")
+            this.data[modelData] = value;
+        else
+            angular.extend(this.data, modelData);
+    };
+
+    Model.prototype.get = function(prop) {
+        if (prop == null) return this.data;
+        return this.data[prop];
+    };
+
+    Model.prototype.reset = function() {
+        // keep reference but clear all properties
+        for (var member in this.data) delete this.data[member];
+    };
+    return Model;
+});
+	  			</code></pre>
+	  		</section>
+	  		<section>
+	  			<h3>Base Model Tests</h3>
+	  			<pre><code data-trim contenteditable class="javascript">
+describe('Model', function () {
+    var modelData = { id: 123, name: 'TEST001' };
+
+    beforeEach( module("models") );
+
+    it('should start empty', inject(function(Model) {
+        expect(Model.get()).toEqual({});
+    }));
+
+    it('should get the updated object', inject(function(Model) {
+        var m = Model.get();
+        m.id = Model.id;
+        expect(Model.get()).toBe(m);
+    }));
+
+    it('should provide a set method', inject(function (Model) {
+        Model.set(modelData);
+        expect(Model.get()).toEqual(modelData);
+    }));
+});
+	  			</code></pre>
+	  		</section>
+	  		<section>
+	  			<h3>Application Wide Components</h3>
+	  			<ol style="color:burlywood">
+	  				<li class="fragment">Reused HTML behaviours</li>
+	  				<li class="fragment">Often third party libs</li>
+	  				<li class="fragment">Modal, Popup, Tooltip, etc&hellip;</li>
+	  			</ol>
+	  			<p class="fragment" >I find AngularStrap to be really good</p>
+	  			<p class="fragment" style="color:cornflowerblue">Components don't touch state!</p>
+	  			<p class="fragment" style="color:pink">Make the most of isolate scope and attributes</p>
+	  		</section>
+	  		<section>
+	  			<h3>Application Wide Actions</h3>
+	  			<ol style="color:burlywood">
+	  				<li class="fragment">Notifications</li>
+	  				<li class="fragment">Analytical Events</li>
+	  				<li class="fragment">Custom logging and profiling</li>
+	  			</ol>
+	  		</section>
+	  		<section>
+	  			<h3>Example Notification Action</h3>
+	  			<pre><code class="javascript" data-trim contenteditable>
+.factory('notify', function(Notifications, uuid) {
+  // types: success, info, warning, danger
+  return function notify(type, message){
+    // add to stack, stack pops itself after time
+    // notifications component will listen to stack and display
+    Notifications.push({
+      id: uuid(),
+      type: type || 'info',
+      message: message,
+    });
+  };
+})
+	  			</code></pre>
+	  			<p class="fragment" style="color:pink">`Notifications` extends the Base Collection</p>
+	  			<p class="fragment" style="color:cornflowerblue">Using a uuid helper service</p>
+	  		</section>
+	  		<section>
+	  			<h3>Application Wide Helper Service</h3>
+	  			<ol style="color:burlywood">
+	  				<li class="fragment"><acronym title="Universally Unique Identifier">UUID</acronym></li>
+	  				<li class="fragment">Custom Extend Service for Prototypes and constructors</li>
+	  				<li class="fragment">Form <acronym title="Directive Definition Object">DDO</acronym> Builder</li>
+	  				<li class="fragment">Anything small helper</li>
+	  			</ol>
+	  		</section>
+	  		<section>
+	  			<h3>Application Wide Helper Service <span style="color:burlywood">extend Prototype</span></h3>
+	  			<pre><code class="javascript" data-trim contenteditable>
+.factory('extendPrototype', function(){
+    return function(protoProps, staticProps) {
+        var parent = this,
+            child;
+        if (protoProps && _.has(protoProps, 'constructor')) {
+            child = protoProps.constructor;
+        } else {
+            child = function(){ return parent.apply(this, arguments); };
+        }
+        _.extend(child, parent, staticProps);
+        var Surrogate = function(){ this.constructor = child; };
+        Surrogate.prototype = parent.prototype;
+        child.prototype = new Surrogate();
+        if (protoProps) _.extend(child.prototype, protoProps);
+        child.__super__ = parent.prototype;
+        return child;
+    };
+});
+	  			</code></pre>
+	  		</section>
+	  		<section>
+	  			<h3>Application Wide Gateways <span style="color:cornflowerblue">- aka Boundaries</span></h3>
+	  			<p class="fragment" style="color:burlywood">High level abstractions for single entry point</p>
+	  			<p class="fragment" style="color:pink">Good for transactions or persistence layers</p>
+	  			<ul>
+	  				<li class="fragment">IndexedDB</li>
+	  				<li class="fragment">Firebase</li>
+	  				<li class="fragment">HTTP</li>
+	  				<li class="fragment">LocalStorage with Promises</li>
+	  				<li class="fragment">Web Sockets</li>
+	  			</ul>
+	  			<p class="fragment" style="color:rgb(4, 108, 4)">I like to make multiple abstractions around these for store specific gateways</p>
+	  		</section>
+	  		<section>
+	  			<h4>Using Core Module Gateways inside a Feature Module</h4>
+	  			<p class="fragment" style="color:burlywood">Maybe you would use the IDB gateway for a `Courses` persistence layer</p>
+	  			<pre class="fragment"><code class="javascript" data-trim contenteditable>
+angular.module('indexeddbGateways')
+    .factory('indexeddbCoursesGateway', function( $q, idbGateway ){
+        var coursesPromise = idbGateway('Courses');
+        return {
+            save: function(course){
+                var d = $q.defer();
+                course = angular.copy(course);
+                coursesPromise.then(function(store){
+                    store.put( course, function success(id){
+                        d.resolve(angular.extend(course, { id: id }));
+                    });
+                });
+                return d.promise;
+            },
+            getAll: function(){
+                var d = $q.defer();
+                coursesPromise.then(function(store){
+                    store.getAll(function success(courseList){
+                        d.resolve(courseList);
+                    });
+                });
+                return d.promise;
+            }
+        };
+    });
+	  			</code></pre>
+	  			<p class="fragment" style="color:cornflowerblue">The idbGateway connects to named Stores and returns a promise that resolves the store which we can `put`, `getAll`, etc&hellip;</p>
+	  		</section>
+	  		<section>
+	  			<h3>Feature Modules?</h3>
+	  			<p class="fragment" style="color:burlywood">They have the same structure as the core.</p>
+	  			<p class="fragment" style="color:pink">You might want to nest modules too.</p>
+	  		</section>
+	  		<section>
+	  			<h3>Where to put Code?</h3>
+	  			<ul style="color:burlywood">
+						<li class="fragment">
+							<span style="color:rgb(4, 108, 4)">Saved Data</span> - State (Models, Entities, Collections, Stores)
+						</li>
+						<li class="fragment">
+							<span style="color:rgb(4, 108, 4)">Feature Logic</span> - Actions (Use Cases, Interactors, Service Layer)
+						</li>
+						<li class="fragment">
+							<span style="color:rgb(4, 108, 4)">HTTP Calls</span> - Gateways (Boundaries)
+						</li>
+						<li class="fragment">
+							<span style="color:rgb(4, 108, 4)">A Form</span> - Components (Directives)
+						</li>
+						<li class="fragment">
+							<span style="color:rgb(4, 108, 4)">Form Validation</span> - Helper Service or Action
+						</li>
+						<li class="fragment">
+							<span style="color:rgb(4, 108, 4)">Initial Data Sync With Server</span> - Composed Actions
+						</li>
+	  			</ul>
+	  			<p class="fragment" style="color:pink">Consider more folders if you end up with 12 or more</p>
+	  			<p class="fragment" style="color:cornflowerblue">Name modules by their feature</p>
+	  			<p class="fragment" style="color:gold">REMEMBER NOT TO DEPEND ON OTHER MODULES!</p>
+	  		</section>
+	  		<section>
+	  			<h4>A Note about Modules</h4>
+	  			<img src="/img/07.3-pointless.jpg">
+	  			<p class="fragment" style="color:pink">Not truly hierarchical - you can accidentally inject from another's dependencies :/</p>
+	  			<p class="fragment" style="color:rgb(4, 108, 4)">Mismatch with AMD and CJS11 - they're upside-down</p>
+	  			<p class="fragment" style="color:cornflowerblue">They don't load any files</p>
+	  		</section>
+	  		<section>
+	  			<img src="/img/module-architecture.png">
+	  		</section>
     	</section>
 
 
@@ -537,7 +881,11 @@ angular.module('routes')
 
 
     </div>
-
+<!-- rgb(229, 76, 76) -->
+<!-- rgb(126, 126, 116) -->
+<!-- rgb(4, 108, 4) -->
+<!-- burlywood -->
+<!-- cornflowerblue -->
   </div>
 
   <script src="lib/js/head.min.js"></script>
