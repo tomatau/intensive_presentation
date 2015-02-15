@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>reveal.js - The HTML Presentation Framework</title>
+  <title>AngularJS Intensive Workshop - TomHT@Thinkful.com - Application Architecture</title>
 
   <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
   <meta name="author" content="Hakim El Hattab">
@@ -356,7 +356,7 @@ NaN == NaN; // evaluates to false
       		<p class="fragment roll-in" style="color:chocolate">By products of these:</p>
       		<ul>
       			<li class="fragment">Testability</li>
-      			<li class="fragment">Scalability <small style="color: rgb(229, 76, 76)" class="fragment">Neat we just solved performance too :D</small></li>
+      			<li class="fragment">Scalability <small style="color: rgb(229, 76, 76)" class="fragment">Neat, we just solved performance too :D</small></li>
       			<li class="fragment">Observable</li>
       		</ul>
       		<aside class="notes">
@@ -467,7 +467,7 @@ adding bugs to an empty text file. &rdquo;<br>
       		<img src="/img/04.2-architecture.jpg" alt="Go home architect">
     		</section>
     		<section>
-    			<h4>So Tom... Which Layer's do you suggest?</h4>
+    			<h4>So Tom... Which layers do you suggest?</h4>
     			<ol style="color:burlywood">
     				<li class="fragment">Configuration</li>
     				<li class="fragment">Core Module</li>
@@ -476,12 +476,12 @@ adding bugs to an empty text file. &rdquo;<br>
     				<li class="fragment">Integration</li>
     			</ol>
     			<p class="fragment">Focus on the requirements</p>
-    			<p class="fragment" style="color:cornflowerblue">Actions, aka: Interactions, Controls, Service Layer</p>
-<!--       		<blockquote class="fragment">
+    			<p class="fragment" style="color:cornflowerblue">Actions, aka Interactions, Controls, Service Layer</p>
+          <blockquote class="fragment">
       			&ldquo; Walking on water and developing software from a specification are easy if both are frozen. &rdquo;<br>
       			- <cite><em>Edward Berard, The Object Agency, Inc</em></cite>
       		</blockquote>
-    			<p class="fragment">Actions inside Modules</p> -->
+    			<!-- <p class="fragment">Actions inside Modules</p> -->
     		</section>
     		<section>
       		<img src="/img/high-level-architecture.png" alt="Go home architect">
@@ -504,10 +504,10 @@ adding bugs to an empty text file. &rdquo;<br>
     			<img src="/img/05-party-at-the-bottom.jpg">
     		</section>
     		<section>
-    			<h3>What does that even Mean?</h3>
+    			<h3>What does that even mean?</h3>
     			<ul style="color:burlywood">
     				<li class="fragment">Routes depend on everything else.</li>
-    				<li class="fragment">Don't depend on routes.</li>
+    				<li class="fragment">Nothing depends on routes.</li>
     				<li class="fragment">They have their own modularity too.</li>
     				<li class="fragment">Initialisation logic, authorisation checks, redirects and little helpers.</li>
     				<li class="fragment">Compose the other pieces for fun!</li>
@@ -540,8 +540,8 @@ angular.module('routes')
     };
   });
     			</code></pre>
-    			<p class="fragment" style="color:cornflowerblue">Put each of these in a folder that reflects the route url/name?</p>
-    			<p class="fragment" style="color:pink"><small>Decouple routes from URLs?</small></p>
+    			<p class="fragment" style="color:cornflowerblue">Put each of these controllers into a folder that reflects the route url/name</p>
+    			<p class="fragment" style="color:pink"><small>Decouple routes from URLs</small></p>
     			<aside class="notes">
     				<p>Constant available in config stage when route setup</p>
     				<p>Can add resolve blocks for authentication, getting data while loading.</p>
@@ -552,7 +552,7 @@ angular.module('routes')
     		<section>
     			<h3>The Configuration For It <span style="color:cornflowerblue">- uiRouter</span></h3>
     			<pre><code class="javascript" data-trim contenteditable>
-angular.config(function(){
+angular.module('routes').config(function(){
   $stateProvider
     .state('manageLayout', {
       abstract: true,
@@ -629,7 +629,7 @@ angular.config(function(){
 	  		</section>
 	  		<section>
 	  			<img src="/img/06-dont-cross-the-streams.jpg">
-	  			<p class="fragment" style="color:rgb(229, 76, 76)">But what about global States and actions? User store, notifications services, Session storage!?</p>
+	  			<p class="fragment" style="color:rgb(229, 76, 76)">But what about global states and actions? User store, notifications services and Session storage!?</p>
 	  			<p class="fragment" style="color:burlywood">&hellip;special module!</p>
 	  		</section>
 	  		<section>
@@ -660,7 +660,7 @@ angular.config(function(){
       		</blockquote>
 	  		</section>
 	  		<section>
-	  			<h4>Core Logic, but application is fragile to it's changes</h4>
+	  			<h4>High level Logic, so the whole application is fragile to the core's changes</h4>
 	  			<img src="/img/07.1-top-of-the-chain.jpg">
 	  		</section>
 	  		<section>
@@ -725,7 +725,7 @@ describe('Model', function () {
 	  			</ol>
 	  			<p class="fragment" >I find AngularStrap to be really good</p>
 	  			<p class="fragment" style="color:cornflowerblue">Components don't touch state!</p>
-	  			<p class="fragment" style="color:pink">Make the most of isolate scope and attributes</p>
+	  			<p class="fragment" style="color:pink">Make the most of isolated scope and attributes</p>
 	  		</section>
 	  		<section>
 	  			<h3>Application Wide Actions</h3>
@@ -758,9 +758,9 @@ describe('Model', function () {
 	  			<h3>Application Wide Helper Service</h3>
 	  			<ol style="color:burlywood">
 	  				<li class="fragment"><acronym title="Universally Unique Identifier">UUID</acronym></li>
-	  				<li class="fragment">Custom Extend Service for Prototypes and constructors</li>
+	  				<li class="fragment">Custom extend service for prototypes and constructors</li>
 	  				<li class="fragment">Form <acronym title="Directive Definition Object">DDO</acronym> Builder</li>
-	  				<li class="fragment">Anything small helper</li>
+	  				<li class="fragment">Any small helper</li>
 	  			</ol>
 	  		</section>
 	  		<section>
@@ -788,7 +788,7 @@ describe('Model', function () {
 	  		</section>
 	  		<section>
 	  			<h3>Application Wide Gateways <span style="color:cornflowerblue">- aka Boundaries</span></h3>
-	  			<p class="fragment" style="color:burlywood">High level abstractions for single entry point</p>
+	  			<p class="fragment" style="color:burlywood">High level abstractions for a single entry point</p>
 	  			<p class="fragment" style="color:pink">Good for transactions or persistence layers</p>
 	  			<ul>
 	  				<li class="fragment">IndexedDB</li>
@@ -892,22 +892,22 @@ angular.module('indexeddbGateways')
 	  						<li class="fragment">Pagination Store</li>
 	  						<li class="fragment">Active Students Store</li>
 	  						<li class="fragment">Currently Selected Student Store</li>
-	  						<li class="fragment">Filters Are expensive on Digest Loops</li>
+	  						<li class="fragment">Filters are expensive on digest loops</li>
 	  					</ul>
 	  				</li>
-	  				<li class="fragment">To minimize watches, maintain object references</li>
+	  				<li class="fragment">To minimize watches and maintain object references</li>
 	  			</ul>
 	  		</section>
 	  		<section>
 	  			<h3>Module State Layers #2 <span style="color:cornflowerblue">(<code>$scope</code>)</span></h3>
 	  			<ul style="color:burlywood">
-	  				<li class="fragment">State live in isolation, not on <code>$scope</code></li>
+	  				<li class="fragment">States live in isolation, not on <code>$scope</code></li>
 	  				<li class="fragment"><code>$scope</code> is just for controllers</li>
 	  				<li class="fragment"><code>$scope</code> can reference states, not own them</li>
 	  				<li class="fragment">These ideas were confirmed by Angular2</li>
 	  				<li class="fragment">Dependency injection is better than <code>$scope</code>, try not to use it</li>
 	  				<li class="fragment">Rarely need <code>$watch</code>, <code>$apply</code> and <code>$observe</code></li>
-	  				<li class="fragment">Don't mutate State directly! Let actions do it!</li>
+	  				<li class="fragment">Don't mutate state directly! Let actions do it!</li>
 	  			</ul>
 	  		</section>
 	  		<section>
@@ -921,7 +921,7 @@ angular.module('indexeddbGateways')
 	  						<li class="fragment">Isolate scopes are good</li>
 	  					</ul>
 	  				</li>
-	  				<li class="fragment">Can maybe use States to check things but don't mutate state here!</li>
+	  				<li class="fragment">Can maybe use states to check things but don't mutate state here!</li>
 	  			</ul>
 	  		</section>
 	  		<section>
@@ -958,9 +958,9 @@ angular.module('models')
     return new CourseList();
   });
 	  			</code></pre>
-	  			<p class="fragment" style="color:pink">Using that Core Module's extend Prototype Service</p>
+	  			<p class="fragment" style="color:pink">Using the said Core Module's extend prototype service</p>
 	  			<p class="fragment" style="color:cornflowerblue">Adding specific methods for this store</p>
-	  			<p class="fragment" style="color:rgb(229, 76, 76)">Uses <code>new</code> to work with Singleton in Angular Style</p>
+	  			<p class="fragment" style="color:rgb(229, 76, 76)">Uses <code>new</code> to work with singleton in an Angular style</p>
 	  		</section>
 	  		<section>
 	  			<h3>Feature Module Actions</h3>
@@ -976,7 +976,7 @@ angular.module('models')
 	  		<section>
 	  			<h3>Example Add Course Action</h3>
 	  			<pre><code class="javascript" data-trim contenteditable>
-angular.module('useCases')
+angular.module('course-manager')
   .factory('addCourse', function(
     $interpolate,
     coursesGateway,
@@ -1087,23 +1087,23 @@ angular.module('useCases')
 					<h3>Performance and Debugging Tips</h3>
 	  			<ul style="color:burlywood">
 	  				<li class="fragment">One time bindings and dandy</li>
-	  				<li class="fragment">Can muggle with ngAnnotate on build process</li>
 	  				<li class="fragment">Don't unit test controllers?</li>
 	  				<li class="fragment">Filter in resolve blocks
 			  			<ul>
-			  				<li class="fragment">Lodash chains are kinda sexy</li>
+			  				<li class="fragment">Lodash chains are kinda fancy</li>
 			  				<li class="fragment">Any functions inside a view 2 way binding are expensive</li>
 			  				<li class="fragment">That includes filters</li>
 			  			</ul>
 	  				</li>
 	  				<li class="fragment">ngRepeat <code>Track by</code> is pretty whiz!</li>
 	  				<li class="fragment">Don't even use jQuery at all, the need to <code>$apply</code> is so rare!</li>
-	  				<li class="fragment">Some nice tricks to research!</li>
+	  				<li class="fragment">And some nice tricks to research!</li>
 	  			</ul>
 	  			<pre class="fragment"><code class="javascript" data-trim>
 $compileProvider.debugInfoEnabled(ENV.DEV);
 $httpProvider.useApplyAsync(!ENV.DEV);
 	  			</code></pre>
+          <p class="fragment" style="color:pink">One more thing...</p>
 				</section>
 				<section>
 					<h3>The EcoSystem</h3>
@@ -1111,16 +1111,18 @@ $httpProvider.useApplyAsync(!ENV.DEV);
 	  				<li class="fragment">Yeoman is nice</li>
 	  				<li class="fragment">SlurpJS is also nice</li>
 	  				<li class="fragment">Gulp is super</li>
-	  				<li class="fragment">Webpack, brunch, systemjs, broccoli, browserify, 6to5, etc&hellip;</li>
+	  				<li class="fragment">Webpack, brunch, systemjs, broccoli, browserify, babeljs, etc&hellip;</li>
 	  				<li class="fragment">So much to choose from - yeoman and gulp is often enough</li>
 	  			</ul>
+          <p class="fragment" style="color:pink">One more thing...</p>
 				</section>
 				<section>
 					<h3>Debugging</h3>
 	  			<ul style="color:burlywood">
-	  				<li class="fragment">Tests for State and Actions</li>
+	  				<li class="fragment">Tests for state and actions</li>
 	  				<li class="fragment">Lots of <code>_.clone</code> to tame objects</li>
 	  				<li class="fragment">ngStrict for dependency problems?</li>
+            <li class="fragment">Says everything is a problem if you use ngAnnotate though</li>
 	  				<li class="fragment">logging and config environment variables</li>
 	  				<li class="fragment">Same old tricks, it's JavaScript</li>
 	  				<li class="fragment">The docs are vital</li>
@@ -1129,17 +1131,16 @@ $httpProvider.useApplyAsync(!ENV.DEV);
 				</section>
 				<section>
 	  			<img src="/img/100-i-know-angular.jpg">
-	  			<p class="fragment" style="color:pink">Any questions?&hellip; And then let's dive into the workshop project you'll be working with!</p>
-				</section>
+          <p class="fragment" style="color:pink">One more thing...</p>
+        </section>
+        <section>
+          <p style="color:burlywood">OK then let's dive into the workshop project you'll be working with!</p>
+          <p class="fragment" style="color:pink">One more thing...</p>
+        </section>
+        <section>
+          <h3 style="color:cornflowerblue">Any questions?&hellip; </h3>
+        </section>
 			</section>
-
-
-
-
-
-
-
-
 
     </div>
 <!-- rgb(229, 76, 76) -->
