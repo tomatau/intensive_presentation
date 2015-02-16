@@ -261,11 +261,15 @@ NaN == NaN; // evaluates to false
       			- <cite><em>Edsger W. Dijkstra, some book?</em></cite>
       		</blockquote>
       		<ul>
-      			<li class="fragment">Small files</li>
+      			<li class="fragment">Be explicit</li>
       			<li class="fragment">Clear and minimal dependencies</li>
       			<li class="fragment">Clear and minimal boundaries</li>
       			<li class="fragment">Clear data flow</li>
       		</ul>
+          <aside class="notes">
+            <p>what do we do when it's too complex?</p>
+            <p>make our own lives as easy as possible</p>
+          </aside>
       	</section>
       	<section>
       		<h3 style="color:gold">JavaScript can be your friend</h3>
@@ -280,17 +284,17 @@ NaN == NaN; // evaluates to false
 					<img src="/img/02-js-has-rules.jpg">
       	</section>
       	<section>
-      		<h3>Setting Some Goals</h3>
+      		<h3>How to simple?</h3>
       		<p class="fragment" style="color:cornflowerblue">Same old ideas&hellip;</p>
       		<ul  style="color:gold">
-      			<li class="fragment">Be explicit</li>
+      			<li class="fragment">Be simple</li>
       			<li class="fragment">Manage initial state</li>
       			<li class="fragment">Use Layers for dependencies and boundaries</li>
       			<li class="fragment">Attempt modularity</li>
       			<li class="fragment">Composition over inheritance</li>
       			<li class="fragment"><acronym title="SRP OCP LSP ISP DIP">SOLID</acronym> <acronym title="Don't repeat yourself">DRY</acronym> <acronym title="Ya ain't gonna need it">YAGNI</acronym> <acronym title="Separation of Concerns">SOC</acronym>s</li>
       		</ul>
-      		<p class="fragment">A bit too general?&hellip;</p>
+      		<p class="fragment">Is this all a bit too general?&hellip;</p>
       		<aside class="notes">
 	      		<p>Layers help with knowing the impact of code additions and changes</p>
 	      		<p>Finding the route of problems and giving ourselves a map to put code in</p>
@@ -301,6 +305,10 @@ NaN == NaN; // evaluates to false
       	<section>
       		<h3>Higher Level Goals</h3>
       		<p class="fragment" style="color:burlywood">Why?</p>
+          <aside class="notes">
+            <p>Let's be more concrete about simplicity.</p>
+            <p>Can still have explicit, modular, composed but wiiild code</p>
+          </aside>
       	</section>
       	<section>
       		<img src="/img/03-legacy-code.jpg">
@@ -331,23 +339,23 @@ NaN == NaN; // evaluates to false
       				</tr>
       			</thead>
       			<tbody>
-      				<tr>
+      				<tr class="fragment">
       					<td style="color:gold">Individual Files</td>
-      					<td>Simple</td>
+      					<td>Simple and Small</td>
       				</tr>
-      				<tr>
+      				<tr class="fragment">
       					<td style="color:gold">Whole Code Base</td>
       					<td>Manageable</td>
       				</tr>
-      				<tr>
+      				<tr class="fragment">
       					<td style="color:gold">The Application</td>
-      					<td>Resilient</td>
+      					<td>Resilient and Fun</td>
       				</tr>
-      				<tr>
+      				<tr class="fragment">
       					<td style="color:gold">Integration</td>
       					<td>Configurable</td>
       				</tr>
-      				<tr>
+      				<tr class="fragment">
       					<td style="color:gold">Features</td>
       					<td>Modular</td>
       				</tr>
@@ -370,18 +378,24 @@ NaN == NaN; // evaluates to false
       	</section>
       	<section>
       		<h3 style="color: rgb(229, 76, 76)">Angular 2 is Coming?</h3>
-      		<p class="fragment roll-in">The ideas being preached are common!</p>
+      		<p class="fragment roll-in">Make migration easier</p>
       		<ul>
       			<li class="fragment" style="color:gold">More code into components.</li>
       			<li class="fragment" style="color:gold">Reduce use of scope, smaller controllers!</li>
       			<li class="fragment" style="color:gold">Clear Hierarchies.</li>
-      			<li class="fragment" style="color:gold">More sophisticated routing strategies. </li>
+            <li class="fragment" style="color:gold">More sophisticated routing strategies. </li>
+      			<li class="fragment" style="color:gold">Build systems in place (ES6 and AtScript)</li>
       		</ul>
+          <aside class="notes">
+            <p>Angular team basically confirmed everything I was doing already, nice</p>
+          </aside>
       	</section>
       	<section>
       		<h3 style="color: rgb(229, 76, 76)">SPAs are a new ecosystem?</h3>
       		<p class="fragment">It doesn't matter ¯\_(ツ)_/¯</p>
-      		<p style="color: burlywood" class="fragment">Use a Modular, layered architecture &amp; try new things!</p>
+          <aside class="notes">
+            <p>Good architecture lets you experiment with new dev styles to see what works</p>
+          </aside>
       	</section>
       </section>
     	<section>
@@ -401,7 +415,7 @@ adding bugs to an empty text file. &rdquo;<br>
 					<img src="/img/04-layers.jpg">
     		</section>
     		<section>
-    			<h3>Benefits of Happy Layers</h3>
+    			<h3>What do we want from Layers?</h3>
     			<ul style="color:burlywood">
     				<li class="fragment roll-in">Smaller Files</li>
     				<li class="fragment roll-in">Clear Dependency Structure</li>
@@ -411,12 +425,17 @@ adding bugs to an empty text file. &rdquo;<br>
     				<li class="fragment roll-in">More DRY</li>
     				<li class="fragment roll-in">Easier to debug</li>
     			</ul>
+          <aside class="notes">
+            <p>The stuff we were just discussing</p>
+            <p>layers can provide all this</p>
+          </aside>
     		</section>
     		<section>
     			<h3>Bad Architecture</h3>
+          <p class="fragment" style="color:burlywood">No layering strategy</p>
     		</section>
     		<section>
-    			<h4 style="color:cornflowerblue">Fat Controller</h4>
+    			<h4 style="color:cornflowerblue">Symptom: Fat Controllers</h4>
     			<ol>
     				<li class="fragment roll-in">bunch of http requests</li>
     				<li class="fragment roll-in">redirects</li>
@@ -461,6 +480,8 @@ adding bugs to an empty text file. &rdquo;<br>
     			<aside class="notes">
     				<p>Blog list controller creates representation of a blog post and stores on scope</p>
     				<p>How can the sidebar get it? Sidebar inside the list controller? Eww! Dependency!</p>
+            <p>Nesting to solve things makes rigidity</p>
+            <p>duplicating states is a waste of angular</p>
     			</aside>
     		</section>
     		<section>
@@ -475,12 +496,16 @@ adding bugs to an empty text file. &rdquo;<br>
     				<li class="fragment">Routes</li>
     				<li class="fragment">Integration</li>
     			</ol>
-    			<p class="fragment">Focus on the requirements</p>
-    			<p class="fragment" style="color:cornflowerblue">Actions, aka Interactions, Controls, Service Layer</p>
           <blockquote class="fragment">
       			&ldquo; Walking on water and developing software from a specification are easy if both are frozen. &rdquo;<br>
       			- <cite><em>Edward Berard, The Object Agency, Inc</em></cite>
       		</blockquote>
+          <p class="fragment">Focus on the requirements</p>
+          <p class="fragment" style="color:cornflowerblue">Actions, aka Interactions, Controls, Service Layer or Use Cases</p>
+          <aside class="notes">
+            <p>From top to bottom!</p>
+            <p></p>
+          </aside>
     			<!-- <p class="fragment">Actions inside Modules</p> -->
     		</section>
     		<section>
@@ -540,8 +565,8 @@ angular.module('routes')
     };
   });
     			</code></pre>
-    			<p class="fragment" style="color:cornflowerblue">Put each of these controllers into a folder that reflects the route url/name</p>
-    			<p class="fragment" style="color:pink"><small>Decouple routes from URLs</small></p>
+    			<p class="fragment" style="color:cornflowerblue">Folder names that reflect the route</p>
+    			<p class="fragment" style="color:pink"><small>Decouple routes from URIs</small></p>
     			<aside class="notes">
     				<p>Constant available in config stage when route setup</p>
     				<p>Can add resolve blocks for authentication, getting data while loading.</p>
@@ -575,7 +600,7 @@ angular.module('routes').config(function(){
     })
 });
     			</code></pre>
-    			<p class="fragment roll-in" style="color:cornflowerblue">Just one URL per File with multiple smaller controllers</p>
+    			<p class="fragment roll-in" style="color:cornflowerblue">Just one URL per file with multiple smaller controllers</p>
     			<p class="fragment roll-in" style="color:pink">One route per file! <span class="fragment roll-in">(long lived app with moving parts!)</span></p>
     			<p class="fragment roll-in" style="color:burlywood">Resolve blocks (explicit dependencies with perks) for named routes!</p>
     			<p class="fragment roll-in" style="color:gold">Small files!</p>
@@ -583,14 +608,16 @@ angular.module('routes').config(function(){
     				<p>Using the addCourseView defined on previous slide</p>
     				<p>Constants to configure path of parent folder</p>
     				<p>heirarchical resolve blocks (explicit dependencies with perks) - note `appResolve`</p>
+            <p>Many students prefer one configuration block for all routes, then adding resolve blocks becomes far less appealing as the file is so big and the massive benefit is lost.</p>
     			</aside>
     		</section>
     		<section>
     			<img src="/img/route-architecture.png">
     			<p style="color:burlywood" class="fragment">Seriously one file per route</p>
-    			<p style="color:pink" class="fragment">Make a routes configuration file for - &nbsp;<code>names :  paths</code></p>
     			<aside class="notes">
-						<p>Many students prefer one configuration block for all routes, then adding resolve blocks becomes far less appealing as the file is so big and the massive benefit is lost.</p>
+            <p>Doesn't matter too much - it's a party</p>
+            <p>Layers have definitions that set directory paths</p>
+            <p>Global resolve is super duper</p>
     			</aside>
     		</section>
     	</section>
@@ -614,7 +641,7 @@ angular.module('routes').config(function(){
 	  				<li class="fragment">Helpers</li>
 	  				<li class="fragment">Actions</li>
 	  				<li class="fragment">Components</li>
-	  				<li class="fragment">Forms</li>
+	  				<li class="fragment">Forms?</li>
 	  			</ol>
       		<blockquote class="fragment">
       			&ldquo; The goal for our software architecture is to provide the key mechanisms that are required to implement a wide variety of cross-layer adaptations described by our taxonomy. &rdquo;<br>
@@ -622,6 +649,8 @@ angular.module('routes').config(function(){
       		</blockquote>
 
 	  			<aside class="notes">
+            <p>Focus on the requirements</p>
+            <p>how to do this?</p>
 	  				<p>Factory or service? - doesn't matter</p>
 	  				<p>All singletons - factories are flexible so I use them all the time</p>
 	  				<p>Services for quick and dirty, need to use an IIFE for modifying prototype</p>
@@ -631,6 +660,9 @@ angular.module('routes').config(function(){
 	  			<img src="/img/06-dont-cross-the-streams.jpg">
 	  			<p class="fragment" style="color:rgb(229, 76, 76)">But what about global states and actions? User store, notifications services and Session storage!?</p>
 	  			<p class="fragment" style="color:burlywood">&hellip;special module!</p>
+          <aside class="notes">
+            <p>Don't let modules talk to each other.. it's not modular</p>
+          </aside>
 	  		</section>
 	  		<section>
 	  			<img src="/img/07-special-module.jpg">
@@ -705,7 +737,7 @@ describe('Model', function () {
 
     it('should get the updated object', inject(function(Model) {
         var m = Model.get();
-        m.id = Model.id;
+        m.id = 'newIdValue';
         expect(Model.get()).toBe(m);
     }));
 
@@ -798,10 +830,15 @@ describe('Model', function () {
 	  				<li class="fragment">Web Sockets</li>
 	  			</ul>
 	  			<p class="fragment" style="color:rgb(4, 108, 4)">I like to make multiple abstractions around these for store specific gateways</p>
+          <aside class="notes">
+            <p>HTTP call with no url set but perhaps the User token wired in already</p>
+            <p>SINGLE ENTRY POINTS FOR WHOLE APP TO USE</p>
+            <p>Wrap them in promises!</p>
+          </aside>
 	  		</section>
 	  		<section>
 	  			<h4>Using Core Module Gateways inside a Feature Module</h4>
-	  			<p class="fragment" style="color:burlywood">Maybe you would use the IDB gateway for a `Courses` persistence layer</p>
+	  			<p class="fragment" style="color:burlywood">IDB gateway for a `Courses` persistence layer</p>
 	  			<pre class="fragment"><code class="javascript" data-trim contenteditable>
 angular.module('indexeddbGateways')
     .factory('indexeddbCoursesGateway', function( $q, idbGateway ){
@@ -829,18 +866,18 @@ angular.module('indexeddbGateways')
         };
     });
 	  			</code></pre>
-	  			<p class="fragment" style="color:cornflowerblue">The idbGateway connects to named Stores and returns a promise that resolves the store which we can `put`, `getAll`, etc&hellip;</p>
+	  			<p class="fragment" style="color:cornflowerblue">The idbGateway connects Tables (Stores), and returns a promise that resolves the said store - then we can `put`, `getAll`, etc&hellip;</p>
 	  		</section>
 	  	</section>
 
 	  	<section data-background="rgb(66, 9, 111)" data-background-transition="zoom">
 	  		<section>
 	  			<h3>Feature Modules?</h3>
-	  			<p class="fragment" style="color:burlywood">They have the same structure as the core.</p>
+	  			<p class="fragment" style="color:burlywood">They have the same layers as core.</p>
 	  			<p class="fragment" style="color:pink">You might want to nest modules too.</p>
 	  		</section>
 	  		<section>
-	  			<h3>Where to put Code?</h3>
+	  			<h3>Where to put what?</h3>
 	  			<ul style="color:burlywood">
 						<li class="fragment">
 							<span style="color:rgb(215, 139, 0)">Saved Data</span> - State (Models, Entities, Collections, Stores)
@@ -861,9 +898,11 @@ angular.module('indexeddbGateways')
 							<span style="color:rgb(215, 139, 0)">Initial Data Sync With Server</span> - Composed Actions
 						</li>
 	  			</ul>
-	  			<p class="fragment" style="color:pink">Consider more folders if you end up with 12 or more</p>
 	  			<p class="fragment" style="color:cornflowerblue">Name modules by their feature</p>
 	  			<p class="fragment" style="color:gold">REMEMBER NOT TO DEPEND ON OTHER MODULES!</p>
+          <aside class="notes">
+            <p>hammer it home</p>
+          </aside>
 	  		</section>
 	  		<section>
 	  			<h4>A Note about Modules</h4>
@@ -871,9 +910,19 @@ angular.module('indexeddbGateways')
 	  			<p class="fragment" style="color:pink">Not truly hierarchical - you can accidentally inject from another's dependencies :/</p>
 	  			<p class="fragment" style="color:rgb(4, 108, 4)">Mismatch with AMD and CJS11 - they're upside-down</p>
 	  			<p class="fragment" style="color:cornflowerblue">They don't load any files</p>
+          <aside class="notes">
+            <p>Module A and B are siblings - A depends on C... now B can use C.. what?</p>
+            <p>Changing in Angular 2.0</p>
+          </aside>
 	  		</section>
 	  		<section>
 	  			<img src="/img/module-architecture.png">
+          <aside class="notes">
+            <p>The definition might contain module configuration settings too</p>
+            <p>services are just helpers here</p>
+            <p>actions in the middle</p>
+            <p>Now look at each of these pieces in more detail</p>
+          </aside>
 	  		</section>
 	  		<section>
 	  			<h3>Tom's Rant about State</h3>
@@ -882,9 +931,9 @@ angular.module('indexeddbGateways')
 	  		<section>
 	  			<h3>Module State Layers <span style="color:cornflowerblue">(aka Stores, Models)</span></h3>
 	  			<ul style="color:burlywood">
-	  				<li class="fragment">Singletons</li>
-	  				<li class="fragment">Collections and Entities</li>
-	  				<li class="fragment">No Boundary operations!</li>
+	  				<li class="fragment">Singletons is the Angular way</li>
+	  				<li class="fragment">Two types: Collections and Entities</li>
+	  				<li class="fragment">No boundary transactions</li>
 	  				<li class="fragment">Purely data structures with helper methods</li>
 	  				<li class="fragment">Lodash integration is nice</li>
 	  				<li class="fragment">Make copies and subsets instead of mutating them
@@ -895,7 +944,7 @@ angular.module('indexeddbGateways')
 	  						<li class="fragment">Filters are expensive on digest loops</li>
 	  					</ul>
 	  				</li>
-	  				<li class="fragment">To minimize watches and maintain object references</li>
+	  				<li class="fragment">To minimize watches -> maintain object references</li>
 	  			</ul>
 	  		</section>
 	  		<section>
@@ -905,7 +954,7 @@ angular.module('indexeddbGateways')
 	  				<li class="fragment"><code>$scope</code> is just for controllers</li>
 	  				<li class="fragment"><code>$scope</code> can reference states, not own them</li>
 	  				<li class="fragment">These ideas were confirmed by Angular2</li>
-	  				<li class="fragment">Dependency injection is better than <code>$scope</code>, try not to use it</li>
+	  				<li class="fragment">Dependency injection cool, use it to avoid <code>$scope</code></li>
 	  				<li class="fragment">Rarely need <code>$watch</code>, <code>$apply</code> and <code>$observe</code></li>
 	  				<li class="fragment">Don't mutate state directly! Let actions do it!</li>
 	  			</ul>
@@ -946,7 +995,7 @@ angular.module('indexeddbGateways')
 	  		<section>
 	  			<h3>Example of Course Collection State</h3>
 	  			<pre><code class="javascript" data-trim contenteditable>
-angular.module('models')
+angular.module('courseManager')
   .factory('CourseList', function(BaseCollection) {
     var CourseList = BaseCollection.extend({
       addStudent: function(courseId) {
@@ -980,18 +1029,16 @@ angular.module('course-manager')
   .factory('addCourse', function(
     $interpolate,
     coursesGateway,
-    Course,
     CourseList,
     notify
   ){
     var msgExp = $interpolate(
       '<strong>Success!</strong> Course {{ name }} saved!');
-    return function addCourse(){
+    return function addCourse(course){
       return coursesGateway.save(Course.get())
         .then(function(savedCourse){
           notify('success', msgExp({ name: savedCourse.name }));
           CourseList.add(savedCourse);
-          Course.reset();
         });
     };
   });
@@ -1014,12 +1061,12 @@ angular.module('course-manager')
 	  			<h3>Boundaries</h3>
 	  			<h4 style="color:cornflowerblue" class="fragment">or Gateways</h4>
 	  			<ul style="color:burlywood">
-	  				<li class="fragment">We saw one earlier for Courses</li>
+	  				<li class="fragment">We saw one earlier for indexedDB Courses</li>
 	  				<li class="fragment">Transactions for specific stores or endpoints</li>
 	  				<li class="fragment">Make use of Core Module Gateways</li>
 	  				<li class="fragment">The single point of entry is still in Core - easier to switch</li>
-	  				<li class="fragment">Don't modify state! Just transactions and return data</li>
-	  				<li class="fragment">Actions can use the boundaries and save the data into States</li>
+	  				<li class="fragment">Don't modify state! Just transactions that send and receive data</li>
+	  				<li class="fragment">Actions can use boundaries and save the returned data into States</li>
 	  				<li class="fragment">Controllers and States should have no idea about the boundaries</li>
 	  			</ul>
 	  		</section>
@@ -1030,7 +1077,7 @@ angular.module('course-manager')
 					<h3>Interlude about Donkeys and Kittens</h3>
 				</section>
 				<section>
-					<h3>Controllers</h3>
+					<h3>Controllers <small class="fragment" style="color:gold">donkeys and kittens</small></h3>
 	  			<p class="fragment" style="color:pink">They live inside routes where the party happens, not inside modules</p>
 	  			<p class="fragment" style="color:cornflowerblue">Depend on modules and map their states onto views</p>
 	  			<p class="fragment" style="color:burlywood">Use module actions when users do stuff</p>
@@ -1134,7 +1181,7 @@ $httpProvider.useApplyAsync(!ENV.DEV);
           <p class="fragment" style="color:pink">One more thing...</p>
         </section>
         <section>
-          <p style="color:burlywood">OK then let's dive into the workshop project you'll be working with!</p>
+          <p style="color:burlywood">Let's dive into the workshop project you'll be working with!</p>
           <p class="fragment" style="color:pink">One more thing...</p>
         </section>
         <section>
